@@ -6,15 +6,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.chris.androidjetpack.R
-import com.chris.kotlindemo.Follower
-import com.chris.kotlindemo.RecyclerViewAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_databinding.*
-import java.net.URL
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
+import java.net.URL
 
 /**
  * Created by jianjianhong on 18-11-27

@@ -1,13 +1,10 @@
-package com.chris.kotlindemo
-
+package com.chris.androidjetpack.databinding
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.chris.androidjetpack.R
-import com.squareup.picasso.Picasso
 
 
 class RecyclerViewAdapter(val items : List<Follower>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -19,8 +16,9 @@ class RecyclerViewAdapter(val items : List<Follower>) : RecyclerView.Adapter<Rec
     var itemClick: RecyclerOnClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.listview_two_line_with_avatar, parent, false)
-        return ViewHolder(itemView)
+        //val itemView = LayoutInflater.from(parent.context).inflate(R.layout.listview_two_line_with_avatar, parent, false)
+        val listItemDatabinding = DataBindingUtil.inflate<ListviewTwoLineWithAvatarBinding>(LayoutInflater.from(parent.context), R.layout.listview_two_line_with_avatar, parent, false)
+        return ViewHolder(listItemDatabinding)
     }
 
     override fun getItemCount(): Int {
@@ -28,22 +26,14 @@ class RecyclerViewAdapter(val items : List<Follower>) : RecyclerView.Adapter<Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(items[position]) {
-            holder.textView.text = login
-            Picasso.get().load(avatar_url).into(holder.avatarView)
-        }
-
+        holder.itemBinding.follower = items[position]
     }
 
-    inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val avatarView: ImageView
-        val textView: TextView
+    inner class ViewHolder(listItemDatabinding: ListviewTwoLineWithAvatarBinding) : RecyclerView.ViewHolder(listItemDatabinding.root) {
+        var itemBinding: ListviewTwoLineWithAvatarBinding
         init {
-            avatarView = itemView.findViewById(R.id.list_item_avatar)
-            textView = itemView.findViewById(R.id.list_title_tv)
-
-            itemView.setOnClickListener({view -> itemClick!!.onItemClick(itemView, layoutPosition)})
-            //if(onItemClick != null) {}
+            this.itemBinding = listItemDatabinding
+            //listItemDatabinding.root.setOnClickListener({view -> itemClick!!.onItemClick(itemView, layoutPosition)})
         }
     }
 }
