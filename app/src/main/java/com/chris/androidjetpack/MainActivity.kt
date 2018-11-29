@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.chris.androidjetpack.databinding.DataBindingActivity
+import com.chris.androidjetpack.databinding.ListViewDataBindingActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,8 +14,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun toDataBinding(view: View) {
+    fun toDataBindingActivity(view: View) {
         val intent = Intent(this, DataBindingActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun toDataBindingListActivity(view: View) {
+        val intent = Intent(this, ListViewDataBindingActivity::class.java)
         startActivity(intent)
     }
 }

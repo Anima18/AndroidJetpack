@@ -9,6 +9,9 @@
               tools:context=".MainActivity">
 
     <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DataBinding"
-            android:onClick="toDataBinding"/>
+            android:onClick="toDataBindingActivity"/>
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DataBindingList"
+            android:onClick="toDataBindingListActivity"/>
 
 </LinearLayout>

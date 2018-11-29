@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="me" type="com.chris.androidjetpack.databinding.Me"/>
+    </data>
+<android.support.constraint.ConstraintLayout
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/meAct_avatar_iv" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp" app:layout_constraintStart_toStartOf="parent"
+            app:imageUrl="@{me.avatar_url}"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/meAct_login_tv" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/meAct_avatar_iv" app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#212121"
+            android:textSize="22sp"
+            android:text="@{me.login}"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:text="@{me.bio}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/meAct_boi_tv" android:layout_marginTop="16dp"
+            android:textColor="#727272"
+            app:layout_constraintTop_toBottomOf="@+id/meAct_login_tv" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>
+</layout>
