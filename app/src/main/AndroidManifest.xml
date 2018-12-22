@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".databinding.ListViewDataBindingActivity"/>
+        <activity android:name=".viewmodel.ListViewDataBindingActivity2"/>
         <activity android:name=".databinding.DataBindingActivity"/>
+        <activity android:name=".lifecycle.LifecycleActivity"/>
+        <activity android:name=".piging.PagerActivity"/>
     </application>
 
 </manifest>

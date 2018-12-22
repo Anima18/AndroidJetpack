@@ -14,4 +14,11 @@
     <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="DataBindingList"
             android:onClick="toDataBindingListActivity"/>
 
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lifecycle"
+            android:onClick="toDLifecycleActivity"/>
+
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lifecycle"
+            android:onClick="toPagingActivity"/>
+
 </LinearLayout>

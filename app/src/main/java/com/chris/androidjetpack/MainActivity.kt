@@ -1,11 +1,15 @@
 package com.chris.androidjetpack
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.viewpager.widget.PagerAdapter
 import com.chris.androidjetpack.databinding.DataBindingActivity
 import com.chris.androidjetpack.databinding.ListViewDataBindingActivity
+import com.chris.androidjetpack.lifecycle.LifecycleActivity
+import com.chris.androidjetpack.piging.PagerActivity
+import com.chris.androidjetpack.viewmodel.ListViewDataBindingActivity2
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +24,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toDataBindingListActivity(view: View) {
-        val intent = Intent(this, ListViewDataBindingActivity::class.java)
+        val intent = Intent(this, ListViewDataBindingActivity2::class.java)
+        startActivity(intent)
+    }
+
+    fun toDLifecycleActivity(view: View) {
+        val intent = Intent(this, LifecycleActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun toPagingActivity(view: View) {
+        val intent = Intent(this, PagerActivity::class.java)
         startActivity(intent)
     }
 }

@@ -1,13 +1,13 @@
 package com.chris.androidjetpack.databinding
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chris.androidjetpack.R
 
 
-class FollowerRecyclerViewAdapter(val items : List<Follower>) : RecyclerView.Adapter<FollowerRecyclerViewAdapter.ViewHolder>() {
+class FollowerRecyclerViewAdapter(val items : List<Follower>) : androidx.recyclerview.widget.RecyclerView.Adapter<FollowerRecyclerViewAdapter.ViewHolder>() {
 
     interface RecyclerOnClick {
         fun onItemClick(view: View, position: Int)
@@ -29,7 +29,7 @@ class FollowerRecyclerViewAdapter(val items : List<Follower>) : RecyclerView.Ada
         holder.itemBinding.follower = items[position]
     }
 
-    inner class ViewHolder(listItemDatabinding: ListviewFollowerBinding) : RecyclerView.ViewHolder(listItemDatabinding.root) {
+    inner class ViewHolder(listItemDatabinding: ListviewFollowerBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(listItemDatabinding.root) {
         var itemBinding: ListviewFollowerBinding
         init {
             this.itemBinding = listItemDatabinding

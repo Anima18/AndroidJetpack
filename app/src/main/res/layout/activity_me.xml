@@ -3,7 +3,7 @@
     <data>
         <variable name="me" type="com.chris.androidjetpack.databinding.Me"/>
     </data>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
@@ -31,5 +31,5 @@
             android:textColor="#727272"
             app:layout_constraintTop_toBottomOf="@+id/meAct_login_tv" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

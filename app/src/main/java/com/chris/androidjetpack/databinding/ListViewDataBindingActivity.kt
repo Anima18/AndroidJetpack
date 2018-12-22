@@ -1,10 +1,8 @@
 package com.chris.androidjetpack.databinding
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.chris.androidjetpack.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -23,7 +21,7 @@ class ListViewDataBindingActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_follower_list)
 
-        dataBindingAct_recyclerView.layoutManager = LinearLayoutManager(this)
+        dataBindingAct_recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
         doAsync {
             var data: List<Follower> = getRequestData("https://api.github.com/users/Anima18/followers")
