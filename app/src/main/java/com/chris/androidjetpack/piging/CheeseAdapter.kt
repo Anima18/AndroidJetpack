@@ -16,10 +16,18 @@
 
 package paging.android.example.com.pagingsample
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.chris.androidjetpack.R
+import com.chris.androidjetpack.databinding.CheeseItemBinding
+import com.chris.androidjetpack.databinding.ListviewFollowerBinding
 import com.chris.androidjetpack.piging.Cheese
+import com.chris.androidjetpack.piging.NetworkState
+import com.chris.androidjetpack.piging.NetworkStateItemViewHolder
 
 /**
  * A simple PagedListAdapter that binds Cheese items into CardViews.
@@ -35,13 +43,64 @@ import com.chris.androidjetpack.piging.Cheese
  * @see android.arch.paging.PagedListAdapter
  * @see android.arch.paging.AsyncPagedListDiffer
  */
-class CheeseAdapter : PagedListAdapter<Cheese, CheeseViewHolder>(diffCallback) {
-    override fun onBindViewHolder(holder: CheeseViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+class CheeseAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Cheese, RecyclerView.ViewHolder>(diffCallback) {
+
+    private var networkState: NetworkState? = null
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        //holder.bindTo(getItem(position))
+        when (getItemViewType(position)) {
+            R.layout.cheese_item -> {
+                (holder as CheeseViewHolder).itemBinding.cheese = getItem(position)
+            }
+            R.layout.network_state_item -> (holder as NetworkStateItemViewHolder).bindTo(
+                networkState)
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheeseViewHolder =
-            CheeseViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.cheese_item -> {
+                val listItemDatabinding = DataBindingUtil.inflate<CheeseItemBinding>(LayoutInflater.from(parent.context), R.layout.cheese_item, parent, false)
+
+                CheeseViewHolder(listItemDatabinding)
+            }
+            R.layout.network_state_item -> NetworkStateItemViewHolder.create(parent, retryCallback)
+            else -> throw IllegalArgumentException("unknown view type $viewType")
+        }
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        return if (hasExtraRow() && position == itemCount - 1) {
+            R.layout.network_state_item
+        } else {
+            R.layout.cheese_item
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount() + if (hasExtraRow()) 1 else 0
+    }
+
+    private fun hasExtraRow() = networkState != null && networkState != NetworkState.LOADED
+
+    fun setNetworkState(newNetworkState: NetworkState?) {
+        val previousState = this.networkState
+        val hadExtraRow = hasExtraRow()
+        this.networkState = newNetworkState
+        val hasExtraRow = hasExtraRow()
+        if (hadExtraRow != hasExtraRow) {
+            if (hadExtraRow) {
+                notifyItemRemoved(super.getItemCount())
+            } else {
+                notifyItemInserted(super.getItemCount())
+            }
+        } else if (hasExtraRow && previousState != newNetworkState) {
+            notifyItemChanged(itemCount - 1)
+        }
+
+    }
 
     companion object {
         /**

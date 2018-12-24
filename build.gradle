@@ -7,8 +7,6 @@ buildscript {
     ext.paging_version = "2.1.0-rc01"
 
     repositories {
-        google()
-        jcenter()
         maven {
             credentials {
                 username project.hasProperty('nexus.user') ? project.property('nexus.user') : System.getenv('NEXUS_USER')
@@ -17,6 +15,9 @@ buildscript {
             url 'http://192.168.60.200:8081/repository/maven-public/'
 
         }
+        google()
+        jcenter()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
@@ -29,8 +30,6 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
         maven {
             credentials {
                 username project.hasProperty('nexus.user') ? project.property('nexus.user') : System.getenv('NEXUS_USER')
@@ -39,6 +38,9 @@ allprojects {
             url 'http://192.168.60.200:8081/repository/maven-public/'
 
         }
+        google()
+        jcenter()
+
     }
 }
 

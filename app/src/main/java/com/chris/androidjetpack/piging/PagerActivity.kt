@@ -23,12 +23,23 @@ class PagerActivity: AppCompatActivity() {
 
         setContentView(R.layout.activity_paging)
 
+        val listData = viewModel.allCheeses()
+
         // Create adapter for the RecyclerView
-        val adapter = CheeseAdapter()
+        val adapter = CheeseAdapter(listData.retry)
         cheeseList.adapter = adapter
+
 
         // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
         // when the list changes
-        viewModel.allCheeses.observe(this, Observer(adapter::submitList))
+        listData.pagedList.observe(this, Observer(adapter::submitList))
+
+        listData.networkState.observe(this, Observer {
+            adapter.setNetworkState(it)
+        })
+
+
     }
+
+
 }
