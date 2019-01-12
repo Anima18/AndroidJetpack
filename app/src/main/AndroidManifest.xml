@@ -23,6 +23,15 @@
         <activity android:name=".databinding.DataBindingActivity"/>
         <activity android:name=".lifecycle.LifecycleActivity"/>
         <activity android:name=".piging.PagerActivity"/>
+        <activity android:name=".notifications.NotificationActivity"/>
+        <activity android:name=".notifications.NotificationResultActivity"/>
+        <activity
+                android:name=".notifications.NotificationResultActivity2"
+                android:parentActivityName=".MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
