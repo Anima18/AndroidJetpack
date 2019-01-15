@@ -25,6 +25,7 @@
         <activity android:name=".piging.PagerActivity"/>
         <activity android:name=".notifications.NotificationActivity"/>
         <activity android:name=".notifications.NotificationResultActivity"/>
+        <activity android:name=".room.TestRoomActivity"/>
         <activity
                 android:name=".notifications.NotificationResultActivity2"
                 android:parentActivityName=".MainActivity">
